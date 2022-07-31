@@ -7268,7 +7268,7 @@ runcode(function()
 				part.Transparency = 1
 				part.CanCollide = true
 				part.Size = Vector3.new(2048,1,2048)
-				part.CFrame = lplr.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0)
+				part.CFrame = lplr.Character.Torso.CFrame * CFrame.new(0,-4,0)
 				part.Anchored = true
 				cam.CanCollide = true
 				workspace.Camera.CameraSubject = cam
