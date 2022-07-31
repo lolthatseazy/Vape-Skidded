@@ -2743,27 +2743,6 @@ runcode(function()
 		["HoverText"] = "Sets your sprinting to true."
 	})
 	
-	runcode(function()
-	local Sprint = {["Enabled"] = false}
-	Sprint = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "Sprint",
-		["Function"] = function(callback)
-			if callback then
-				task.spawn(function()
-					repeat
-						task.wait()
-						if (not Sprint["Enabled"]) then break end
-						if (not bedwars["sprintTable"].sprinting) then
-							bedwars["sprintTable"]:startSprinting()
-						end
-					until (not Sprint["Enabled"])
-				end)
-			else
-				bedwars["sprintTable"]:stopSprinting()
-			end
-		end,
-		["HoverText"] = "Sets your sprinting to true."
-	})
 	
 	local FieldOfViewValue = {["Value"] = 70}
 	local oldfov
@@ -2856,6 +2835,7 @@ runcode(function()
 		end
 	})
 end)
+
 
 local lagbackedaftertouch = false
 runcode(function()
@@ -2990,6 +2970,34 @@ runcode(function()
 							task.wait(2.4)
 						end
 					until (not TPAura["Enabled"])
+				end)
+			end
+		end
+	})
+
+
+local TPAura2 = {["Enabled"] = false}
+	TPAura2 = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "TPaura2",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+					repeat
+						task.wait(0.03)
+						local plr = GetNearestHumanoidToPosition(true, 1000)
+						if plr then
+							game:GetService("ReplicatedStorage"):FindFirstChild("events-@easy-games/game-core:shared/game-core-networking@getEvents.Events").useAbility:FireServer("void_turret_fire", {
+								target = plr.Character,
+								fromTurret = {
+									Name = "void_turret",
+									Position = roundpos(plr.Character.HumanoidRootPart.Position),
+									Parent = workspace.Map.Worlds:GetChildren()[1].Blocks
+								}
+							})
+							task.delay(1.8, function() bedwars["SwordController"]:playSwordEffect(bedwars["ItemTable"]["wood_sword"]) end)
+							task.wait(2.4)
+						end
+					until (not TPAura2["Enabled"])
 				end)
 			end
 		end
