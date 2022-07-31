@@ -8577,7 +8577,6 @@ local AnticheatDisabler = {["Enabled"] = false}
 				spawn(function()
 					repeat
 						task.wait(0.03)
-						print("Ez")
 					until (not AnticheatDisabler["Enabled"])
 				end)
 			end
