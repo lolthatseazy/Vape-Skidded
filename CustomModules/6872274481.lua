@@ -2724,7 +2724,7 @@ end)
 runcode(function()
 	local Sprint = {["Enabled"] = false}
 	Sprint = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "Pro one",
+		["Name"] = "Sprint",
 		["Function"] = function(callback)
 			if callback then
 				task.spawn(function()
@@ -8986,6 +8986,23 @@ runcode(function()
 		end,
 		["HoverText"] = "Makes speed check more stupid.\n(thank you to MicrowaveOverflow.cpp#7030 for no more clone crap)",
 	})
+	
+	
+	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "AnticheatDisabler",
+		["Function"] = function(callback)
+			if callback then
+				task.spawn(function()
+					task.spawn(function()
+						repeat task.wait() until shared.VapeFullyLoaded
+						if AnticheatDisabler["Enabled"] then
+						print("This will be added idk in some time")
+					end)
+		end,
+		["HoverText"] = "Makes speed check more stupid.\n(thank you to MicrowaveOverflow.cpp#7030 for no more clone crap)",
+	})
+	
+	
 	local arrowdodgeconnection
 	local arrowdodgedata
 	
