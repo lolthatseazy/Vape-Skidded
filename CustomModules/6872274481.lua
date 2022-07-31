@@ -8485,6 +8485,31 @@ runcode(function()
 end)
 
 runcode(function()
+	local AnticheatDisabler = {["Enabled"] = false}
+	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "AnticheatDisabler",
+		["Function"] = function(callback)
+			if callback then
+				task.spawn(function()
+					repeat
+						task.wait()
+						if (not AnticheatDisabler["Enabled"]) then break end
+						-- if (not bedwars["sprintTable"].sprinting) then  --// Checks if something its off for turn it on
+						--    CODE HERE
+						--end  --if u delete the if not bedwars sprinttable.sprinting then delete this too
+					until (not AnticheatDisabler["Enabled"])
+				end)
+			else
+				print("Stopped Anticheat Disabler")
+			end
+		end,
+		["HoverText"] = "Disables The anticheat"
+		
+	})
+end)
+
+
+runcode(function()
 	local antivoidpart
 	local antivoidconnection
 	local antivoiddelay = {["Value"] = 10}
@@ -9146,30 +9171,6 @@ runcode(function()
 			["Default"] = AnticheatBypassNumbers.TPLerp * 100,
 		})
 	end
-end)
-
-runcode(function()
-	local AnticheatDisabler = {["Enabled"] = false}
-	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "AnticheatDisabler",
-		["Function"] = function(callback)
-			if callback then
-				task.spawn(function()
-					repeat
-						task.wait()
-						if (not AnticheatDisabler["Enabled"]) then break end
-						-- if (not bedwars["sprintTable"].sprinting) then  --// Checks if something its off for turn it on
-						--    CODE HERE
-						--end  --if u delete the if not bedwars sprinttable.sprinting then delete this too
-					until (not AnticheatDisabler["Enabled"])
-				end)
-			else
-				print("Stopped Anticheat Disabler")
-			end
-		end,
-		["HoverText"] = "Disables The anticheat"
-		
-	})
 end)
 
 runcode(function()
