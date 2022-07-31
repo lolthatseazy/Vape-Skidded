@@ -300,7 +300,7 @@ end
 runcode(function()
 	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
-	textlabel.Text = "Moderators can ban you at any time, Always use alts."
+	textlabel.Text = "Moderators can ban you at any time, Always use alts Nigga."
 	textlabel.BackgroundTransparency = 1
 	textlabel.ZIndex = 10
 	textlabel.TextStrokeTransparency = 0
