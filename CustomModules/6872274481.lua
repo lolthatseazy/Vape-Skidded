@@ -2724,7 +2724,7 @@ end)
 runcode(function()
 	local Sprint = {["Enabled"] = false}
 	Sprint = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "Sprint Gigachad",
+		["Name"] = "Pro one",
 		["Function"] = function(callback)
 			if callback then
 				task.spawn(function()
