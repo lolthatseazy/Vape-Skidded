@@ -3195,11 +3195,9 @@ local NightTime = {["Enabled"] = false}
 		["Name"] = "NightTime",
 		["Function"] = function(callback)
 			if callback then 
-				spawn(function()
-					repeat
-						task.wait(0.03)
+				task.spawn(function()
+						task.wait()
 						game.Lighting.ClockTime = 0
-					until (not NightTime["Enabled"])
 				end)
 				else
 				    game.Lighting.ClockTime = 11
