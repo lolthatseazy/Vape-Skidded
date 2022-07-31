@@ -9149,22 +9149,40 @@ runcode(function()
 end)
 
 runcode(function()
-	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+	local AnticheatDisabler = {["Enabled"] = false}
+	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "AnticheatDisabler",
 		["Function"] = function(callback)
 			if callback then
 				task.spawn(function()
-					task.spawn(function()
-						repeat task.wait() until shared.VapeFullyLoaded
-						if AnticheatDisabler["Enabled"] then
-						print("This will be added idk in some time")
-					end)
+					repeat
+						task.wait()
+						if (not AnticheatDisabler["Enabled"]) then break end
+						-- if (not bedwars["sprintTable"].sprinting) then  --// Checks if something its off for turn it on
+						--    CODE HERE
+						--end  --if u delete the if not bedwars sprinttable.sprinting then delete this too
+					until (not AnticheatDisabler["Enabled"])
+				end)
+			else
+				print("Stopped Anticheat Disabler")
+			end
 		end,
-		["HoverText"] = "Disables anticheat",
+		["HoverText"] = "Disables The anticheat"
+		
 	})
-	
-			end)
 end)
+
+runcode(function()
+	GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "WinterTheme",
+		["Function"] = function(callback)
+			if callback then
+				task.spawn(function()
+				    print("Hi")
+						end
+					end
+			end)
+
 
 runcode(function()
 	GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
