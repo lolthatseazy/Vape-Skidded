@@ -8484,9 +8484,6 @@ runcode(function()
 	})
 end)
 
-
-
-
 runcode(function()
 	local antivoidpart
 	local antivoidconnection
@@ -8928,10 +8925,6 @@ runcode(function()
 			end)
 		end)
 	end
-	
-	
-	
-	
 
 	AnticheatBypass = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "AnticheatBypass",
@@ -8993,10 +8986,6 @@ runcode(function()
 		end,
 		["HoverText"] = "Makes speed check more stupid.\n(thank you to MicrowaveOverflow.cpp#7030 for no more clone crap)",
 	})
-	
-	
-	
-	
 	local arrowdodgeconnection
 	local arrowdodgedata
 	
@@ -9150,18 +9139,6 @@ runcode(function()
 		})
 	end
 end)
-
-runcode(function()
-	GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "WinterTheme",
-		["Function"] = function(callback)
-			if callback then
-				task.spawn(function()
-				    print("Hi")
-						end
-					end
-			end)
-
 
 runcode(function()
 	GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
