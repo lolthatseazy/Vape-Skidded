@@ -8495,7 +8495,7 @@ runcode(function()
 						task.wait()
 						if (not AnticheatDisabler["Enabled"]) then break end
 						-- if (not bedwars["sprintTable"].sprinting) then  --// Checks if something its off for turn it on
-						--    CODE HERE
+						print("Xdd")
 						--end  --if u delete the if not bedwars sprinttable.sprinting then delete this too
 					until (not AnticheatDisabler["Enabled"])
 				end)
