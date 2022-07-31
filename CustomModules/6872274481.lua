@@ -7305,14 +7305,14 @@ runcode(function()
 		["Default"] = "175",
 		["Function"] = function(val) end
 	})
-	speed = partfly.CreateSlider({
-		["Name"] = "Speed",
-		["HoverText"] = "How fast you go up",
-		["Min"] = "2.5",
-		["Max"] = "5",
-		["Default"] = "2.5`",
-		["Function"] = function(val) end
-	})
+speed = partfly.CreateSlider({
+        ["Name"] = "Speed",
+        ["HoverText"] = "How fast you go up",
+        ["Min"] = "2.5",
+        ["Max"] = "5",
+        ["Default"] = "2.5",
+        ["Function"] = function(val) end
+    })
 end)
 
 
