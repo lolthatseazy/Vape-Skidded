@@ -2976,7 +2976,7 @@ runcode(function()
 	local DinoExploit = {["Enabled"] = false}
 	local dinoconnection
 	DinoExploit = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "DinoExploit",
+		["Name"] = "FuckSpeed",
 		["Function"] = function(callback)
 			if callback then 
 				game:GetService("ReplicatedStorage"):FindFirstChild("events-@easy-games/game-core:shared/game-core-networking@getEvents.Events").useAbility:FireServer("dino_charge")
