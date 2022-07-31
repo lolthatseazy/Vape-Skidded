@@ -2743,6 +2743,28 @@ runcode(function()
 		["HoverText"] = "Sets your sprinting to true."
 	})
 	
+	runcode(function()
+	local Sprint = {["Enabled"] = false}
+	Sprint = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "Sprint",
+		["Function"] = function(callback)
+			if callback then
+				task.spawn(function()
+					repeat
+						task.wait()
+						if (not Sprint["Enabled"]) then break end
+						if (not bedwars["sprintTable"].sprinting) then
+							bedwars["sprintTable"]:startSprinting()
+						end
+					until (not Sprint["Enabled"])
+				end)
+			else
+				bedwars["sprintTable"]:stopSprinting()
+			end
+		end,
+		["HoverText"] = "Sets your sprinting to true."
+	})
+	
 	local FieldOfViewValue = {["Value"] = 70}
 	local oldfov
 	local oldfov2
