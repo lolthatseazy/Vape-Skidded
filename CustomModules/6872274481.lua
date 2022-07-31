@@ -3189,6 +3189,24 @@ runcode(function()
 	})
 end)
 
+
+local NightTime = {["Enabled"] = false}
+	NightTime = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "NightTime",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+					repeat
+						task.wait(0.03)
+						game.Lighting.ClockTime = 0
+					until (not NightTime["Enabled"])
+				end)
+				else
+				    game.Lighting.ClockTime = 11
+			end
+		end
+	})
+
 runcode(function()
 	local Nuker = {["Enabled"] = false}
 	local nukerrange = {["Value"] = 1}
