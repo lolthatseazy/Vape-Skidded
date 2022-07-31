@@ -8585,6 +8585,20 @@ runcode(function()
 	})
 end)
 
+local AnticheatDisabler2 = {["Enabled"] = false}
+	AnticheatDisabler2 = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "AnticheatDisabler2",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+					repeat
+						task.wait(0.03)
+					until (not AnticheatDisabler2["Enabled"])
+				end)
+			end
+		end
+	})
+
 local AnticheatDisabler = {["Enabled"] = false}
 	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "AnticheatDisabler",
@@ -8598,6 +8612,8 @@ local AnticheatDisabler = {["Enabled"] = false}
 			end
 		end
 	})
+	
+	
 
 runcode(function()
 	local AnticheatBypassTransparent = {["Enabled"] = false}
