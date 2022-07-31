@@ -6892,6 +6892,72 @@ end)
 
 GuiLibrary["RemoveObject"]("FlyOptionsButton")
 local flymissile
+
+runcode(function()
+	local part
+	local cam
+	local Flying
+	local ticks = 300
+	local speed = 1
+	local debuging = true
+	local partfly = {["Enabled"] = false}
+	partfly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "PartFly",
+		["HoverText"] = "Lets you fly using a part",
+		["Function"] = function(callback)
+			if callback then
+				part = Instance.new("Part",workspace)
+				cam = Instance.new("Part",workspace)
+				part.Transparency = 1
+				part.CanCollide = true
+				part.Size = Vector3.new(2048,1,2048)
+				part.CFrame = lplr.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0)
+				part.Anchored = true
+				cam.CanCollide = true
+				workspace.Camera.CameraSubject = cam
+				lplr.Character.Humanoid.CameraOffset = Vector3.new(0,8,0)
+				cam.Transparency = 0.5
+				Flying = true
+				task.spawn(function()
+					for i = 1,ticks do
+						if Flying then
+							cam.CFrame = CFrame.new(lplr.Character.HumanoidRootPart.CFrame.X,part.CFrame.Y + 2,lplr.Character.HumanoidRootPart.CFrame.Z)
+							task.wait(0.01)
+							lplr.Character.HumanoidRootPart.Velocity = Vector3.new(lplr.Character.HumanoidRootPart.Velocity.X,i * speed,lplr.Character.HumanoidRootPart.Velocity.Z)
+							cam.CFrame = CFrame.new(lplr.Character.HumanoidRootPart.CFrame.X,part.CFrame.Y + 2,lplr.Character.HumanoidRootPart.CFrame.Z)
+							if debuging then
+								print("ticks "..i)
+							end
+						end
+					end
+				end)
+			else
+				Flying = false
+				workspace.Camera.CameraSubject = lplr.Character.Humanoid
+				lplr.Character.Humanoid.CameraOffset = Vector3.new(0,0,0)
+				part:Destroy()
+				cam:Destroy()
+			end
+		end 
+	})
+	ticks = partfly.CreateSlider({
+		["Name"] = "Ticks",
+		["HoverText"] = "How long the fly lasts",
+		["Min"] = "75",
+		["Max"] = "750",
+		["Default"] = "175",
+		["Function"] = function(val) end
+	})
+	speed = partfly.CreateSlider({
+		["Name"] = "Speed",
+		["HoverText"] = "How fast you go up",
+		["Min"] = "2.5",
+		["Max"] = "5",
+		["Default"] = "2.5`",
+		["Function"] = function(val) end
+	})
+end)
+
 runcode(function()
 	local OldNoFallFunction
 	local flymode = {["Value"] = "Normal"}
