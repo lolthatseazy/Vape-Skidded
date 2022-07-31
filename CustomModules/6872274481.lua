@@ -7278,10 +7278,10 @@ runcode(function()
 				task.spawn(function()
 					for i = 1,ticks do
 						if Flying then
-							cam.CFrame = CFrame.new(lplr.Character.HumanoidRootPart.CFrame.X,part.CFrame.Y + 2,lplr.Character.HumanoidRootPart.CFrame.Z)
+							cam.CFrame = CFrame.new(lplr.Character.Torso.CFrame.X,part.CFrame.Y + 2,lplr.Character.Torso.CFrame.Z)
 							task.wait(0.01)
 							lplr.Character.HumanoidRootPart.Velocity = Vector3.new(lplr.Character.HumanoidRootPart.Velocity.X,i * speed,lplr.Character.HumanoidRootPart.Velocity.Z)
-							cam.CFrame = CFrame.new(lplr.Character.HumanoidRootPart.CFrame.X,part.CFrame.Y + 2,lplr.Character.HumanoidRootPart.CFrame.Z)
+							cam.CFrame = CFrame.new(lplr.Character.Torso.CFrame.X,part.CFrame.Y + 2,lplr.Character.Torso.CFrame.Z)
 							if debuging then
 								print("ticks "..i)
 							end
