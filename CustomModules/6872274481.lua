@@ -8925,6 +8925,10 @@ runcode(function()
 			end)
 		end)
 	end
+	
+	
+	
+	
 
 	AnticheatBypass = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "AnticheatBypass",
@@ -8988,19 +8992,6 @@ runcode(function()
 	})
 	
 	
-	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "AnticheatDisabler",
-		["Function"] = function(callback)
-			if callback then
-				task.spawn(function()
-					task.spawn(function()
-						repeat task.wait() until shared.VapeFullyLoaded
-						if AnticheatDisabler["Enabled"] then
-						print("This will be added idk in some time")
-					end)
-		end,
-		["HoverText"] = "Makes speed check more stupid.\n(thank you to MicrowaveOverflow.cpp#7030 for no more clone crap)",
-	})
 	
 	
 	local arrowdodgeconnection
@@ -9155,6 +9146,24 @@ runcode(function()
 			["Default"] = AnticheatBypassNumbers.TPLerp * 100,
 		})
 	end
+end)
+
+runcode(function()
+	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "AnticheatDisabler",
+		["Function"] = function(callback)
+			if callback then
+				task.spawn(function()
+					task.spawn(function()
+						repeat task.wait() until shared.VapeFullyLoaded
+						if AnticheatDisabler["Enabled"] then
+						print("This will be added idk in some time")
+					end)
+		end,
+		["HoverText"] = "Disables anticheat",
+	})
+	
+			end)
 end)
 
 runcode(function()
