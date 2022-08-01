@@ -7254,7 +7254,8 @@ local GravityFly = {["Enabled"] = false}
 	GravityFly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "GravityFly",
 		["Function"] = function(callback)
-			if callback then 
+			if callback then
+			    createwarning("Vape",  "Dont use this fly more than 2.3 seconds !", 6)
 					    game.Workspace.Gravity = 0
 				else
 				    game.Workspace.Gravity = 196
