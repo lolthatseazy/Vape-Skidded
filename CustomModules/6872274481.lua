@@ -7251,6 +7251,21 @@ end)
 
 
 runcode(function()
+	local GravityFly = {["Enabled"] = false}
+	GravityFly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "GravityFly",
+		["HoverText"] = "Lets you fly using a part",
+		["Function"] = function(callback)
+			if callback then
+             game.Workspace.Gravity = 0
+			end
+else
+    game.Workspace.Gravity = 196
+	})
+end)
+
+
+runcode(function()
 	local part
 	local cam
 	local Flying
@@ -7263,15 +7278,17 @@ runcode(function()
 		["HoverText"] = "Lets you fly using a part",
 		["Function"] = function(callback)
 			if callback then
-				part = Instance.new("Part",workspace)
-				cam = Instance.new("Part",workspace)
+				part = Instance.new("Part")
+				cam = Instance.new("Part")
+				part.Parent = game.Workspace
+				cam.Parent = game.Workspace
 				part.Transparency = 1
 				part.CanCollide = true
 				part.Size = Vector3.new(2048,1,2048)
 				part.CFrame = lplr.Character.Torso.CFrame * CFrame.new(0,-4,0)
 				part.Anchored = true
 				cam.CanCollide = true
-				workspace.Camera.CameraSubject = cam
+				game.Workspace.Camera.CameraSubject = cam
 				lplr.Character.Humanoid.CameraOffset = Vector3.new(0,8,0)
 				cam.Transparency = 0.5
 				Flying = true
