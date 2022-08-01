@@ -7250,19 +7250,20 @@ runcode(function()
 end)
 
 
-runcode(function()
-	local GravityFly = {["Enabled"] = false}
-	GravityFly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+local GravityFly = {["Enabled"] = false}
+	GravityFly = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "GravityFly",
-		["HoverText"] = "Lets you fly using a part",
 		["Function"] = function(callback)
-			if callback then
-             game.Workspace.Gravity = 0
+			if callback then 
+				task.spawn(function()
+						task.wait()
+					    game.Workspace.Gravity = 0
+				end)
+				else
+				    game.Workspace.Gravity = 196
 			end
-else
-    game.Workspace.Gravity = 196
+		end
 	})
-end)
 
 
 runcode(function()
