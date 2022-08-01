@@ -2849,7 +2849,7 @@ local AutoWinWorld = {["Enabled"] = false}
 					until (not AutoWinWorld["Enabled"])
 				end)
 			end
-		end
+		end,
 	})
 
 
@@ -3222,37 +3222,6 @@ local NightTime = {["Enabled"] = false}
 		end
 	})
 	
-	local GeneratorDisabler = {["Enabled"] = false}
-	GeneratorDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "GeneratorDisabler",
-		["Function"] = function(callback)
-			if callback then 
-				spawn(function()
-				    createwarning("GeneratorDisabler", "Again Fake Module", 5)
-					repeat
-						task.wait(0.03)
-					until (not GeneratorDisabler["Enabled"])
-				end)
-			end
-		end
-	})
-
-
-local ItemFlood = {["Enabled"] = false}
-	ItemFlood = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "ItemFlood",
-		["Function"] = function(callback)
-			if callback then 
-				spawn(function()
-				    createwarning("ItemFlood", "Again Fake Module", 5)
-					repeat
-						task.wait(0.03)
-					until (not ItemFlood["Enabled"])
-				end)
-			end
-		end
-	})
-
 runcode(function()
 	local Nuker = {["Enabled"] = false}
 	local nukerrange = {["Value"] = 1}
@@ -9792,6 +9761,8 @@ end)
 
 
 GuiLibrary["RemoveObject"]("SafeWalkOptionsButton")
+
+
 runcode(function()
 	local controlmodule = require(lplr.PlayerScripts.PlayerModule).controls
 	local oldmove
