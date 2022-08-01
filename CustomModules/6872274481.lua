@@ -9838,7 +9838,10 @@ runcode(function()
 	})
 end)
 
-runcode(function()
+
+
+GuiLibrary["RemoveObject"]("SafeWalkOptionsButton")
+
 local funny = {["Enabled"] = false}
 	funny = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "funny",
@@ -9853,8 +9856,7 @@ local funny = {["Enabled"] = false}
 			end
 		end
 	})
-end)
-GuiLibrary["RemoveObject"]("SafeWalkOptionsButton")
+
 runcode(function()
 	local controlmodule = require(lplr.PlayerScripts.PlayerModule).controls
 	local oldmove
