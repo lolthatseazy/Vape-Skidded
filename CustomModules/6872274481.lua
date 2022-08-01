@@ -2837,6 +2837,23 @@ runcode(function()
 end)
 
 
+local AutoWinWorld = {["Enabled"] = false}
+	AutoWinWorld = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "Auto Win",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+				    createwarning("Auto win", "Basically Fake module", 5)
+					repeat
+						task.wait(0.03)
+					until (not AnticheatDisabler2["Enabled"])
+				end)
+			end
+		end,
+		["HoverText"] = ""
+	})
+
+
 local lagbackedaftertouch = false
 runcode(function()
 	local antivoidpart
@@ -3188,6 +3205,37 @@ runcode(function()
 		["Default"] = 20
 	})
 end)
+
+local GeneratorDisabler = {["Enabled"] = false}
+	GeneratorDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "GeneratorDisabler",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+				    createwarning("GeneratorDisabler", "Again Fake Module", 5)
+					repeat
+						task.wait(0.03)
+					until (not GeneratorDisabler["Enabled"])
+				end)
+			end
+		end
+	})
+
+
+local ItemFlood = {["Enabled"] = false}
+	ItemFlood = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "ItemFlood",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+				    createwarning("ItemFlood", "Again Fake Module", 5)
+					repeat
+						task.wait(0.03)
+					until (not ItemFlood["Enabled"])
+				end)
+			end
+		end
+	})
 
 
 local NightTime = {["Enabled"] = false}
@@ -9788,6 +9836,22 @@ runcode(function()
 		end
 	})
 end)
+
+
+local funny = {["Enabled"] = false}
+	funny = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "funny",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+				    createwarning("funny", "Again Fake Module", 5)
+					repeat
+						task.wait(0.03)
+					until (not GeneratorDisabler["Enabled"])
+				end)
+			end
+		end
+	})
 
 GuiLibrary["RemoveObject"]("SafeWalkOptionsButton")
 runcode(function()
