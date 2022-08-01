@@ -2837,21 +2837,6 @@ runcode(function()
 end)
 
 
-local AutoWinWorld = {["Enabled"] = false}
-	AutoWinWorld = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "Auto Win",
-		["Function"] = function(callback)
-			if callback then 
-				spawn(function()
-				    createwarning("Auto win", "Basically Fake module", 5)
-					repeat
-						task.wait(0.03)
-					until (not AutoWinWorld["Enabled"])
-				end)
-			end
-		end,
-	})
-
 
 local lagbackedaftertouch = false
 runcode(function()
