@@ -1,3 +1,5 @@
+
+
 repeat task.wait() until game:IsLoaded() == true
 local injected = true
 local oldrainbow = false
