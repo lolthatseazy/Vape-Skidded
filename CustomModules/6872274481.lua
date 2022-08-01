@@ -7251,7 +7251,7 @@ end)
 
 
 local GravityFly = {["Enabled"] = false}
-	GravityFly = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+	GravityFly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "GravityFly",
 		["Function"] = function(callback)
 			if callback then 
