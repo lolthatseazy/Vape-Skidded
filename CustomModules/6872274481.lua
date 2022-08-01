@@ -8645,6 +8645,9 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 		["Function"] = function(callback)
 			if callback then 
 				spawn(function()
+				    createwarning("AnticheatDisabler2", "Bypassing Anticheat", 5)
+				    wait(5.3)
+				    createwarning("AnticheatDisabler2", "Failed to bypass anticheat", 5)
 					repeat
 						task.wait(0.03)
 					until (not AnticheatDisabler2["Enabled"])
@@ -8657,7 +8660,8 @@ local AnticheatDisabler = {["Enabled"] = false}
 	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "AnticheatDisabler",
 		["Function"] = function(callback)
-			if callback then 
+			if callback then
+			    createwarning("AnticheatDisabler", "Disabled Anticheat", 7)
 				spawn(function()
 					repeat
 						task.wait(0.03)
