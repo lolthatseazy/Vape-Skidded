@@ -2846,11 +2846,10 @@ local AutoWinWorld = {["Enabled"] = false}
 				    createwarning("Auto win", "Basically Fake module", 5)
 					repeat
 						task.wait(0.03)
-					until (not AnticheatDisabler2["Enabled"])
+					until (not AutoWinWorld["Enabled"])
 				end)
 			end
-		end,
-		["HoverText"] = ""
+		end
 	})
 
 
