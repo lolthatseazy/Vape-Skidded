@@ -7255,7 +7255,7 @@ local GravityFly = {["Enabled"] = false}
 		["Name"] = "GravityFly",
 		["Function"] = function(callback)
 			if callback then
-			    createwarning("Vape",  "Dont use this fly more than 2.3 seconds !", 6)
+			    createwarning("Vape",  "You can lagback with this!", 6)
 					    game.Workspace.Gravity = 0
 				else
 				    game.Workspace.Gravity = 196
