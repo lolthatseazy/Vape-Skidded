@@ -8654,7 +8654,7 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 					until (not AnticheatDisabler2["Enabled"])
 				end)
 			end
-		end
+		end,
 		["HoverText"] = "Bypasses Anticheat V2"
 	})
 
@@ -8670,7 +8670,7 @@ local AnticheatDisabler = {["Enabled"] = false}
 					until (not AnticheatDisabler["Enabled"])
 				end)
 			end
-		end
+		end,
 		["HoverText"] = "Completly Disables Anticheat Sometimes can flag"
 	})
 	
