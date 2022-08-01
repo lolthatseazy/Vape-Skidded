@@ -78,9 +78,9 @@ local flyspeed = {["Value"] = 40}
 local nobob = {["Enabled"] = false}
 local AnticheatBypass = {["Enabled"] = false}
 local AnticheatBypassCombatCheck = {["Enabled"] = false}
-local combatcheck = false
+local combatcheck = true
 local combatchecktick = tick()
-local disabletpcheck = false
+local disabletpcheck = true
 local queueType = "bedwars_test"
 local FastConsume = {["Enabled"] = false}
 local chatconnection2
@@ -88,8 +88,8 @@ local oldchanneltab
 local oldchannelfunc
 local oldchanneltabs = {}
 local connectionstodisconnect = {}
-local anticheatfunny = false
-local anticheatfunnyyes = false
+local anticheatfunny = true
+local anticheatfunnyyes = true
 local tpstring
 local networkownertick = tick()
 local networkownerfunc = isnetworkowner or function(part)
