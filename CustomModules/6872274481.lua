@@ -3238,7 +3238,20 @@ local NightTime = {["Enabled"] = false}
 	})
 
 
-
+local ItemFlood = {["Enabled"] = false}
+	ItemFlood = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "ItemFlood",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+				    createwarning("ItemFlood", "Again Fake Module", 5)
+					repeat
+						task.wait(0.03)
+					until (not ItemFlood["Enabled"])
+				end)
+			end
+		end
+	})
 
 runcode(function()
 	local Nuker = {["Enabled"] = false}
@@ -9779,22 +9792,6 @@ end)
 
 
 GuiLibrary["RemoveObject"]("SafeWalkOptionsButton")
-
-local funny = {["Enabled"] = false}
-	funny = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "funny",
-		["Function"] = function(callback)
-			if callback then 
-				spawn(function()
-				    createwarning("funny", "Again Fake Module", 5)
-					repeat
-						task.wait(0.03)
-					until (not funny["Enabled"])
-				end)
-			end
-		end
-	})
-
 runcode(function()
 	local controlmodule = require(lplr.PlayerScripts.PlayerModule).controls
 	local oldmove
