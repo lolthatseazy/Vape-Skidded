@@ -7249,22 +7249,19 @@ runcode(function()
 	flyacprogressbar["Object"].Visible = false
 end)
 
-
+runcode(function()
 local GravityFly = {["Enabled"] = false}
 	GravityFly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "GravityFly",
 		["Function"] = function(callback)
 			if callback then 
-				task.spawn(function()
-						task.wait()
 					    game.Workspace.Gravity = 0
-				end)
 				else
 				    game.Workspace.Gravity = 196
 			end
 		end
 	})
-
+end)
 
 runcode(function()
 	local part
