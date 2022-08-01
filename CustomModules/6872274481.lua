@@ -3206,7 +3206,24 @@ runcode(function()
 	})
 end)
 
-local GeneratorDisabler = {["Enabled"] = false}
+
+
+local NightTime = {["Enabled"] = false}
+	NightTime = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "NightTime",
+		["Function"] = function(callback)
+			if callback then 
+				task.spawn(function()
+						task.wait()
+						game.Lighting.ClockTime = 0
+				end)
+				else
+				    game.Lighting.ClockTime = 11
+			end
+		end
+	})
+	
+	local GeneratorDisabler = {["Enabled"] = false}
 	GeneratorDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "GeneratorDisabler",
 		["Function"] = function(callback)
@@ -3233,22 +3250,6 @@ local ItemFlood = {["Enabled"] = false}
 						task.wait(0.03)
 					until (not ItemFlood["Enabled"])
 				end)
-			end
-		end
-	})
-
-
-local NightTime = {["Enabled"] = false}
-	NightTime = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "NightTime",
-		["Function"] = function(callback)
-			if callback then 
-				task.spawn(function()
-						task.wait()
-						game.Lighting.ClockTime = 0
-				end)
-				else
-				    game.Lighting.ClockTime = 11
 			end
 		end
 	})
