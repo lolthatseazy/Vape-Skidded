@@ -7255,7 +7255,7 @@ local GravityFly = {["Enabled"] = false}
 		["Name"] = "GravityFly",
 		["Function"] = function(callback)
 			if callback then
-			    createwarning("Vape",  "You can lagback with this!", 6)
+			    createwarning("GravityFly",  "You can lagback with this!", 6)
 					    game.Workspace.Gravity = 0
 				else
 				    game.Workspace.Gravity = 196
@@ -7277,41 +7277,9 @@ runcode(function()
 		["HoverText"] = "Lets you fly using a part",
 		["Function"] = function(callback)
 			if callback then
-				part = Instance.new("Part")
-				cam = Instance.new("Part")
-				part.Parent = game.Workspace
-				cam.Parent = game.Workspace
-				part.Transparency = 1
-				part.CanCollide = true
-				part.Size = Vector3.new(2048,1,2048)
-				part.CFrame = lplr.Character.Torso.CFrame * CFrame.new(0,-4,0)
-				part.Anchored = true
-				cam.CanCollide = true
-				game.Workspace.Camera.CameraSubject = cam
-				lplr.Character.Humanoid.CameraOffset = Vector3.new(0,8,0)
-				cam.Transparency = 0.5
-				Flying = true
-				task.spawn(function()
-					for i = 1,ticks do
-						if Flying then
-							cam.CFrame = CFrame.new(lplr.Character.Torso.CFrame.X,part.CFrame.Y + 2,lplr.Character.Torso.CFrame.Z)
-							task.wait(0.01)
-							lplr.Character.HumanoidRootPart.Velocity = Vector3.new(lplr.Character.HumanoidRootPart.Velocity.X,i * speed,lplr.Character.HumanoidRootPart.Velocity.Z)
-							cam.CFrame = CFrame.new(lplr.Character.Torso.CFrame.X,part.CFrame.Y + 2,lplr.Character.Torso.CFrame.Z)
-							if debuging then
-								print("ticks "..i)
-							end
-						end
-					end
-				end)
-			else
-				Flying = false
-				workspace.Camera.CameraSubject = lplr.Character.Humanoid
-				lplr.Character.Humanoid.CameraOffset = Vector3.new(0,0,0)
-				part:Destroy()
-				cam:Destroy()
+			    createwarning("PartFly",  "Patched For now", 6)
 			end
-		end 
+			end
 	})
 	ticks = partfly.CreateSlider({
 		["Name"] = "Ticks",
