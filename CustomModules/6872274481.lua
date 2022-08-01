@@ -8664,7 +8664,7 @@ local AnticheatDisabler = {["Enabled"] = false}
 		["Function"] = function(callback)
 			if callback then
 				spawn(function()
-				    createwarning("AnticheatDisabler", "Disabled Anticheat", 7)
+				    createwarning("AnticheatDisabler", "Anticheat Disabled", 7)
 					repeat
 						task.wait(0.03)
 					until (not AnticheatDisabler["Enabled"])
