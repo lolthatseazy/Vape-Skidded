@@ -9837,7 +9837,7 @@ runcode(function()
 	})
 end)
 
-
+runcode(function()
 local funny = {["Enabled"] = false}
 	funny = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "funny",
@@ -9847,12 +9847,12 @@ local funny = {["Enabled"] = false}
 				    createwarning("funny", "Again Fake Module", 5)
 					repeat
 						task.wait(0.03)
-					until (not GeneratorDisabler["Enabled"])
+					until (not funny["Enabled"])
 				end)
 			end
 		end
 	})
-
+end)
 GuiLibrary["RemoveObject"]("SafeWalkOptionsButton")
 runcode(function()
 	local controlmodule = require(lplr.PlayerScripts.PlayerModule).controls
