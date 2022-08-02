@@ -8666,18 +8666,16 @@ local InviteSpam = {["Enabled"] = false}
 			if callback then
 				spawn(function()
 				    createwarning("InviteSpam", "Spamming everyone", 4)
-				    wait(1)
-				    createwarning("InviteSpam", "This can fuck ur ping!", 4)
 					repeat
-						task.wait(2.8)
+						task.wait(2)
 for i,v in next, game.Players:GetPlayers() do
-local args = {
+local BlackShitBruh = {
     [1] = {
         ["player"] = v
     }
 }
 
-game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].inviteToParty:FireServer(unpack(args))
+game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].inviteToParty:FireServer(unpack(BlackShitBruh))
 game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].leaveParty:FireServer()
 end
 					until (not InviteSpam["Enabled"])
