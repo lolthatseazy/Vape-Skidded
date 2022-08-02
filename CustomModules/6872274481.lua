@@ -8657,7 +8657,6 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 
 
 
-runcode(function()
 	local SpamInvite = {["Enabled"] = false}
 	SpamInvite = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "SpamInvite",
@@ -8685,7 +8684,6 @@ end
 		end,
 		["HoverText"] = "Spam Invites to everyone"
 	})
-	end)
 
 
 
