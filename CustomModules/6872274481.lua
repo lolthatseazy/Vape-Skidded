@@ -8659,16 +8659,19 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 		end
 	})
 
-local InviteSpam = {["Enabled"] = false}
-	InviteSpam = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "InviteSpam",
+local FunnyShitNigga = {["Enabled"] = false}
+	FunnyShitNigga = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "InviteAll",
 		["Function"] = function(callback)
-			if callback then
+			if callback then 
 				spawn(function()
-				    createwarning("InviteSpam", "Spamming everyone", 4)
+				    createwarning("AnticheatDisabler2", "Bypassing Anticheat", 5)
+				    wait(5.3)
+				    createwarning("AnticheatDisabler2", "Failed to bypass anticheat", 5)
 					repeat
-					    print("Gay Porn")
-					until (not InviteSpam["Enabled"])
+					    print("xD")
+						task.wait(0.03)
+					until (not FunnyShitNigga["Enabled"])
 				end)
 			end
 		end
