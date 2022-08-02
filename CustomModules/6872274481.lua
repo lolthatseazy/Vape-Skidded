@@ -8680,7 +8680,6 @@ end
 					until (not SpamInvite["Enabled"])
 				end)
 			else
-
 			end
 		end,
 		["HoverText"] = "Spam Invites to everyone"
