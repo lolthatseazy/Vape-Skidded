@@ -8661,16 +8661,15 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 
 	local SpamInvite = {["Enabled"] = false}
 	Spaminvite = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "Spam invite to everyone",
+		["Name"] = "Spam invite",
 		["Function"] = function(callback)
 			if callback then 
 				spawn(function()
 				    createwarning("SpamInvite", "This may fuck ur ping lol", 5)
 				    wait(3)
 				    createwarning("SpamInvite", "Spamming", 5)
-				    SpamInvite = {["Enabled"] = false}
 					repeat
-						task.wait(2.8)
+						task.wait(2)
 for i,v in next, game.Players:GetPlayers() do
 local args = {
     [1] = {
