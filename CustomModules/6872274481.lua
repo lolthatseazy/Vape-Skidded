@@ -8700,7 +8700,7 @@ end
 		end,
 		["HoverText"] = "Spams invites to everyone."
 	})
-	
+end)
 	
 	
 	
