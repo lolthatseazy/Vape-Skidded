@@ -8688,12 +8688,10 @@ game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobb
 game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].leaveParty:FireServer()
 end
 			else
-				end
 			end
-		end,
-		["HoverText"] = "Allows you to access tiered items early."
+		end
 	})
-end)
+			end)
 	
 	
 	
