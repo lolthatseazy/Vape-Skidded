@@ -8670,7 +8670,6 @@ local AnticheatDisabler = {["Enabled"] = false}
 	})
 	
 	
-	runcode(function()
 	local SpamInvite = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "SpamInvite",
 		["Function"] = function(callback) 
@@ -8691,7 +8690,6 @@ end
 			end
 		end
 	})
-			end)
 	
 	
 	
