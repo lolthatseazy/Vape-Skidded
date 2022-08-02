@@ -8667,18 +8667,7 @@ local InviteSpam = {["Enabled"] = false}
 				spawn(function()
 				    createwarning("InviteSpam", "Spamming everyone", 4)
 					repeat
-						
-for i,v in next, game.Players:GetPlayers() do
-local BlackShitBruh = {
-    [1] = {
-        ["player"] = v
-    }
-}
-
-game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].inviteToParty:FireServer(unpack(BlackShitBruh))
-game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].leaveParty:FireServer()
-wait(2)
-end
+					    print("Gay Porn")
 					until (not InviteSpam["Enabled"])
 				end)
 			end
