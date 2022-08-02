@@ -8657,6 +8657,21 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 
 
 
+local InviteSpam = {["Enabled"] = false}
+	InviteSpam = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "InviteSpam",
+		["Function"] = function(callback)
+			if callback then
+				spawn(function()
+				    createwarning("InviteSpam", "Spamming this can fuck ur ping", 7)
+				    repeat
+				        print("ha")
+				    until = {InviteSpam["Enabled"] = false}
+				end)
+			end
+		end
+	})
+
 
 
 local AnticheatDisabler = {["Enabled"] = false}
