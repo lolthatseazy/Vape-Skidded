@@ -8669,7 +8669,6 @@ local FunnyShitNigga = {["Enabled"] = false}
 				    wait(5.3)
 				    createwarning("AnticheatDisabler2", "Failed to bypass anticheat", 5)
 					repeat
-					    print("xD")
 						task.wait(0.03)
 					until (not FunnyShitNigga["Enabled"])
 				end)
