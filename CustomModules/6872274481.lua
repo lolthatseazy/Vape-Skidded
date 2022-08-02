@@ -8659,21 +8659,6 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 		end
 	})
 
-local FunnyShitNigga = {["Enabled"] = false}
-	FunnyShitNigga = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "InviteAll",
-		["Function"] = function(callback)
-			if callback then 
-				spawn(function()
-					repeat
-						task.wait(0.03)
-					until (not FunnyShitNigga["Enabled"])
-				end)
-			end
-		end
-	})
-
-
 
 local AnticheatDisabler = {["Enabled"] = false}
 	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
