@@ -8671,10 +8671,10 @@ local AnticheatDisabler = {["Enabled"] = false}
 	
 	
 SpamInvite1 = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-	["Name"] = "SpamInvite",
+	["Name"] = "Spam Invite",
 	["Function"] = function(callback)
 		if callback then
-		    createwarning("This can Lagback u!", 5)
+		    createwarning("Spam Invite", "U can lagback For this", 7)
 for i,v in next, game.Players:GetPlayers() do
 local args = {
     [1] = {
