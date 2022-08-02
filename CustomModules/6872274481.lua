@@ -8661,10 +8661,9 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 
 	local SpamInvite = {["Enabled"] = false}
 	Spaminvite = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "Spam invite",
+		["Name"] = "Spaminvite",
 		["Function"] = function(callback)
 			if callback then 
-				spawn(function()
 				    createwarning("SpamInvite", "This may fuck ur ping lol", 5)
 				    wait(3)
 				    createwarning("SpamInvite", "Spamming", 5)
@@ -8681,7 +8680,6 @@ game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobb
 game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].leaveParty:FireServer()
 end
 					until (not Spaminvite["Enabled"])
-				end)
 			end
 		end
 	})
