@@ -8657,20 +8657,35 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 
 
 
-local InviteSpam = {["Enabled"] = false}
-	InviteSpam = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "InviteSpam",
+runcode(function()
+	local SpamInvite = {["Enabled"] = false}
+	SpamInvite = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "SpamInvite",
 		["Function"] = function(callback)
 			if callback then
-				spawn(function()
-				    createwarning("InviteSpam", "Spamming this can fuck ur ping", 7)
-				    repeat
-				        print("ha")
-				    until = {InviteSpam["Enabled"] = false}
+				task.spawn(function()
+					repeat
+						task.wait()
+						if (not SpamInvite["Enabled"]) then break end
+for i,v in next, game.Players:GetPlayers() do
+local args = {
+    [1] = {
+        ["player"] = v
+    }
+}
+
+game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].inviteToParty:FireServer(unpack(args))
+game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].leaveParty:FireServer()
+end
+					until (not SpamInvite["Enabled"])
 				end)
+			else
+
 			end
-		end
+		end,
+		["HoverText"] = "Spam Invites to everyone"
 	})
+	end)
 
 
 
