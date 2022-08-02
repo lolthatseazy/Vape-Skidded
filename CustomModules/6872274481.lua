@@ -8665,9 +8665,6 @@ local FunnyShitNigga = {["Enabled"] = false}
 		["Function"] = function(callback)
 			if callback then 
 				spawn(function()
-				    createwarning("AnticheatDisabler2", "Bypassing Anticheat", 5)
-				    wait(5.3)
-				    createwarning("AnticheatDisabler2", "Failed to bypass anticheat", 5)
 					repeat
 						task.wait(0.03)
 					until (not FunnyShitNigga["Enabled"])
