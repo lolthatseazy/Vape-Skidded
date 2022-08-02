@@ -8675,6 +8675,8 @@ SpamInvite1 = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].Create
 	["Function"] = function(callback)
 		if callback then
 		    createwarning("Spam Invite", "U can lagback For this", 7)
+		    repeat
+		    task.wait(2.5)
 for i,v in next, game.Players:GetPlayers() do
 local args = {
     [1] = {
@@ -8685,6 +8687,7 @@ local args = {
 game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].inviteToParty:FireServer(unpack(args))
 game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].leaveParty:FireServer()
 end
+until (not SpamInvite1["Enabled"])
 		else
 		end
 	end, 
