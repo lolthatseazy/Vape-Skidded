@@ -8666,6 +8666,7 @@ local AnticheatDisabler2 = {["Enabled"] = false}
 					repeat
 						task.wait()
 						if (not SpamInvite["Enabled"]) then break end
+						createwarning("This can fuck your ping!", 4)
 for i,v in next, game.Players:GetPlayers() do
 local args = {
     [1] = {
