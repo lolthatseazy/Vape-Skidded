@@ -9131,7 +9131,7 @@ end)
 runcode(function()
 	local Multiaura = {["Enabled"] = false}
     Multiaura = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-        ["Name"] = "MultiAura",
+        ["Name"] = "MultiAura1",
         ["Function"] = function(callback)
             if callback then
                 task.spawn(function()
