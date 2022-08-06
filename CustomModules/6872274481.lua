@@ -5609,7 +5609,7 @@ runcode(function()
 	end
 end)
 
-runcode(function()
+--[[runcode(function()
 	local Multiaura = {["Enabled"] = false}
     Multiaura = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
         ["Name"] = "MultiAura",
@@ -5633,7 +5633,7 @@ runcode(function()
         ["HoverText"] = "Attack players around you\nwithout aiming at them."
     })
 end)
-
+--]]
 
 
 
