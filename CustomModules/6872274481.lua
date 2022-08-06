@@ -5626,7 +5626,7 @@ runcode(function()
 								bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
 							end
 						end
-					until Killaura["Enabled"] == false
+					until MultiAura["Enabled"] == false
 				end)
             end
         end,
@@ -8685,7 +8685,7 @@ end
 
 
 
---[[local AnticheatDisabler = {["Enabled"] = false}
+local AnticheatDisabler = {["Enabled"] = false}
 	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "AnticheatDisabler",
 		["Function"] = function(callback)
@@ -8696,7 +8696,6 @@ end
 			end
 		end
 	})
-	--]]
 	
 	
 	
