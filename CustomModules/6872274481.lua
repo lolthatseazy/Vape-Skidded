@@ -37,13 +37,6 @@ local lagbackevent = Instance.new("BindableEvent")
 local reported = 0
 local allowspeed = true
 local antivoiding = false
-local bettergetfocus = function()
-	if KRNL_LOADED then 
-		return ((game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused() or searchbar:IsFocused()) and true or nil) 
-	else
-		return game:GetService("UserInputService"):GetFocusedTextBox()
-	end
-end
 local betterisfile = function(file)
 	local suc, res = pcall(function() return readfile(file) end)
 	return suc and res ~= nil
@@ -85,9 +78,9 @@ local flyspeed = {["Value"] = 40}
 local nobob = {["Enabled"] = false}
 local AnticheatBypass = {["Enabled"] = false}
 local AnticheatBypassCombatCheck = {["Enabled"] = false}
-local combatcheck = false
+local combatcheck = true
 local combatchecktick = tick()
-local disabletpcheck = false
+local disabletpcheck = true
 local queueType = "bedwars_test"
 local FastConsume = {["Enabled"] = false}
 local chatconnection2
@@ -95,8 +88,8 @@ local oldchanneltab
 local oldchannelfunc
 local oldchanneltabs = {}
 local connectionstodisconnect = {}
-local anticheatfunny = false
-local anticheatfunnyyes = false
+local anticheatfunny = true
+local anticheatfunnyyes = true
 local tpstring
 local networkownertick = tick()
 local networkownerfunc = isnetworkowner or function(part)
@@ -1905,18 +1898,18 @@ bedwars["breakBlock"] = function(pos, effects, normal, bypass)
             }):andThen(function(result)
 				if result ~= "failed" then
 					healthbarblocktable.blockHealth = math.max(healthbarblocktable.blockHealth - blockdmg, 0)
-					if effects then
-						bedwars["BlockBreaker"]:updateHealthbar(blockhealthbarpos, healthbarblocktable.blockHealth, block:GetAttribute("MaxHealth"), blockdmg)
-						if healthbarblocktable.blockHealth <= 0 then
-							bedwars["BlockBreaker"].breakEffect:playBreak(block.Name, blockhealthbarpos.blockPosition, lplr)
-							bedwars["BlockBreaker"].healthbarMaid:DoCleaning()
-							healthbarblocktable.breakingBlockPosition = Vector3.zero
-						else
-							bedwars["BlockBreaker"].breakEffect:playHit(block.Name, blockhealthbarpos.blockPosition, lplr)
-						end
-					end
 				end
 			end)
+            if effects then
+				bedwars["BlockBreaker"]:updateHealthbar(blockhealthbarpos, healthbarblocktable.blockHealth, block:GetAttribute("MaxHealth"), blockdmg)
+                if healthbarblocktable.blockHealth <= 0 then
+                    bedwars["BlockBreaker"].breakEffect:playBreak(block.Name, blockhealthbarpos.blockPosition, lplr)
+                    bedwars["BlockBreaker"].healthbarMaid:DoCleaning()
+					healthbarblocktable.breakingBlockPosition = Vector3.zero
+                else
+                    bedwars["BlockBreaker"].breakEffect:playHit(block.Name, blockhealthbarpos.blockPosition, lplr)
+                end
+            end
         end
     end
 end	
@@ -2273,7 +2266,7 @@ runcode(function()
 		["Function"] = function(callback)
 			if callback then
 				aimbegan = uis.InputBegan:connect(function(input1)
-					if bettergetfocus() == nil and input1.UserInputType == Enum.UserInputType.MouseButton1 then
+					if uis:GetFocusedTextBox() == nil and input1.UserInputType == Enum.UserInputType.MouseButton1 then
 						aimactive = true
 					end
 				end)
@@ -2752,6 +2745,7 @@ runcode(function()
 		["HoverText"] = "Sets your sprinting to true."
 	})
 	
+	
 	local FieldOfViewValue = {["Value"] = 70}
 	local oldfov
 	local oldfov2
@@ -2843,6 +2837,8 @@ runcode(function()
 		end
 	})
 end)
+
+
 
 local lagbackedaftertouch = false
 runcode(function()
@@ -2951,6 +2947,40 @@ end)
 
 
 runcode(function()
+	local function roundpos(pos)
+		return Vector3.new(math.round(pos.X / 3) * 3, math.round(pos.Y / 3) * 3, math.round(pos.Z / 3) * 3)
+	end
+	
+	local TPAura = {["Enabled"] = false}
+	TPAura = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "TPAura",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+					repeat
+						task.wait(0.03)
+						local plr = GetNearestHumanoidToPosition(true, 1000)
+						if plr then
+							game:GetService("ReplicatedStorage"):FindFirstChild("events-@easy-games/game-core:shared/game-core-networking@getEvents.Events").useAbility:FireServer("void_turret_fire", {
+								target = plr.Character,
+								fromTurret = {
+									Name = "void_turret",
+									Position = roundpos(plr.Character.HumanoidRootPart.Position),
+									Parent = workspace.Map.Worlds:GetChildren()[1].Blocks
+								}
+							})
+							task.delay(1.8, function() bedwars["SwordController"]:playSwordEffect(bedwars["ItemTable"]["wood_sword"]) end)
+							task.wait(2.4)
+						end
+					until (not TPAura["Enabled"])
+				end)
+			end
+		end
+	})
+
+
+
+
 	local DinoExploit = {["Enabled"] = false}
 	local dinoconnection
 	DinoExploit = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
@@ -3162,6 +3192,23 @@ runcode(function()
 	})
 end)
 
+
+
+local NightTime = {["Enabled"] = false}
+	NightTime = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "NightTime",
+		["Function"] = function(callback)
+			if callback then 
+				task.spawn(function()
+						task.wait()
+						game.Lighting.ClockTime = 0
+				end)
+				else
+				    game.Lighting.ClockTime = 11
+			end
+		end
+	})
+	
 runcode(function()
 	local Nuker = {["Enabled"] = false}
 	local nukerrange = {["Value"] = 1}
@@ -4875,7 +4922,7 @@ runcode(function()
 							task.spawn(function()
 								for i = 1, 100 do
 									task.wait(0.01)
-									entity.character.HumanoidRootPart.Velocity = vec3(0, i * 2.5, 0)
+									entity.character.HumanoidRootPart.Velocity = vec3(0, i * 3, 0)
 								end
 							end)
 						else
@@ -5143,13 +5190,13 @@ runcode(function()
 		end
 		local selfroot = (oldcloneroot or entity.character.HumanoidRootPart)
 		local selfrootpos = selfroot.Position
-		local selfcheck = selfrootpos - (selfroot.Velocity * 0.164)
+		local selfcheck = selfrootpos - (selfroot.Velocity * 0.163)
 		if (selfcheck - (root.Position + (root.Velocity * 0.05))).Magnitude > 18 then 
 			return nil
 		end
 		local selfpos = selfrootpos + (killaurarange["Value"] > 14 and (selfrootpos - root.Position).magnitude > 14 and (CFrame.lookAt(selfrootpos, root.Position).lookVector * 4) or Vector3.zero)
 		local ping = math.floor(tonumber(game:GetService("Stats"):FindFirstChild("PerformanceStats").Ping:GetValue()))
-		bedwars["SwordController"].lastAttack = tick() + (ping > 120 and -0.08 or 0) or 0
+		bedwars["SwordController"].lastAttack = tick() + (ping > 100 and 0 or 0.06)
 		local attacksuccess = killaurarealremote:InvokeServer({
 			["bye"] = "lex",
 			["weapon"] = sword["tool"],
@@ -5164,7 +5211,7 @@ runcode(function()
 				["selfPosition"] = hashvec(selfpos)
 			}
 		})
-		bedwars["SwordController"].lastAttack = attacksuccess and tick() + (ping > 120 and -0.08 or 0) or 0
+		bedwars["SwordController"].lastAttack = attacksuccess and tick() + (ping > 100 and 0 or 0.06) or 0
 	end
 
 	local orig
@@ -5179,8 +5226,8 @@ runcode(function()
 			{CFrame = cfnew(0.69, -0.71, 0.6) * CFrame.Angles(math.rad(200), math.rad(60), math.rad(1)), Time = 0.15}
 		},
 		New = {
-			{CFrame = CFrame.new(0.69, -0.77, 0.37 + 1.1) * CFrame.Angles(math.rad(-33), math.rad(57), math.rad(-81)), Time = 0.12},
-			{CFrame = CFrame.new(0.74, -0.92, -0.22 + 1.1) * CFrame.Angles(math.rad(147), math.rad(71), math.rad(53)), Time = 0.12}
+			{CFrame = CFrame.new(0.69, -0.77, 0.37) * CFrame.Angles(math.rad(-33), math.rad(57), math.rad(-81)), Time = 0.12},
+			{CFrame = CFrame.new(0.74, -0.92, -0.22) * CFrame.Angles(math.rad(147), math.rad(71), math.rad(53)), Time = 0.12}
 		},
 		["Vertical Spin"] = {
 			{CFrame = cfnew(0, 0, 0) * CFrame.Angles(math.rad(-90), math.rad(8), math.rad(5)), Time = 0.1},
@@ -5597,6 +5644,34 @@ runcode(function()
 end)
 
 runcode(function()
+	local Multiaura = {["Enabled"] = false}
+    Multiaura = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+        ["Name"] = "MultiAura",
+        ["Function"] = function(callback)
+            if callback then
+                task.spawn(function()
+					repeat
+						task.wait(0.03)
+						if (GuiLibrary["ObjectsThatCanBeSaved"]["Lobby CheckToggle"]["Api"]["Enabled"] == false or matchState ~= 0) and Killaura["Enabled"] then
+							local plrs = GetAllNearestHumanoidToPosition(true, 17.999, 1, false)
+							for i,plr in pairs(plrs) do
+								local selfpos = entity.character.HumanoidRootPart.Position
+								local newpos = plr.RootPart.Position
+								bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
+							end
+						end
+					until Killaura["Enabled"] == false
+				end)
+            end
+        end,
+        ["HoverText"] = "Attack players around you\nwithout aiming at them."
+    })
+end)
+
+
+
+
+runcode(function()
 	local BowAura = {["Enabled"] = false}
 	local BowAuraRange = {["Value"] = 40}
 	BowAura = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
@@ -5779,7 +5854,7 @@ runcode(function()
 				task.spawn(function()
 					repeat
 						task.wait()
-						if entity.isAlive and (not bedwars["ClientStoreHandler"]:getState().Inventory.opened) and (uis:IsKeyDown(Enum.KeyCode.Q) or uis:IsKeyDown(Enum.KeyCode.Backspace)) and bettergetfocus() == nil then
+						if entity.isAlive and (not bedwars["ClientStoreHandler"]:getState().Inventory.opened) and (uis:IsKeyDown(Enum.KeyCode.Q) or uis:IsKeyDown(Enum.KeyCode.Backspace)) and uis:GetFocusedTextBox() == nil then
 							task.spawn(bedwars["DropItem"])
 						end
 					until (not FastDrop)
@@ -6634,7 +6709,6 @@ runcode(function()
 	AutoToxicPhrases8["Object"].AddBoxBKG.AddBox.TextSize = 12
 end)
 
-local slowdowntick = tick()
 local Scaffold = {["Enabled"] = false}
 local flyvelo
 local flyboosting = false
@@ -6658,22 +6732,9 @@ runcode(function()
 	local boosttimes = 0
 	local raycastparameters = RaycastParams.new()
 	local funni = false
+	local slowdowntick = tick()
 	local speedcheck
 	local tweenservice = game:GetService("TweenService")
-
-	local function numbertween(orig, goal, timee, func)
-		local tween
-		local int = Instance.new("IntValue")
-		int.Value = orig
-		int:GetPropertyChangedSignal("Value"):connect(function()
-			if func(int.Value) then tween:Cancel() end
-		end)
-		tween = tweenservice:Create(int, TweenInfo.new(timee, Enum.EasingStyle.Linear), {Value = goal})
-		tween.Completed:connect(function()
-			int:Destroy()
-		end)
-		tween:Play()
-	end
 
 	speed = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "Speed",
@@ -6688,7 +6749,7 @@ runcode(function()
 					end
 				end)
 				speedcheck = lplr:GetAttributeChangedSignal("LastTeleported"):connect(function()
-					if math.abs(lplr:GetAttribute("SpawnTime") - lplr:GetAttribute("LastTeleported")) > 1 and matchstatetick <= tick() and matchState ~= 0 then
+					if math.abs(lplr:GetAttribute("SpawnTime") - lplr:GetAttribute("LastTeleported")) > 1 and matchstatetick <= tick() and matchState ~= 0 and speedmode["Value"] == "Heatseeker" then
 						slowdowntick = tick() + 3
 						local warning = createwarning("Speed", "Teleport Detected\nSlowing down speed for 3s.", 3)
 						pcall(function()
@@ -6728,9 +6789,7 @@ runcode(function()
 							local ray = workspace:Raycast(entity.character.HumanoidRootPart.Position, newpos, raycastparameters)
 							if ray then newpos = (ray.Position - entity.character.HumanoidRootPart.Position) end
 							if networkownerfunc(entity.character.HumanoidRootPart) then
-								if slowdowntick <= tick() then
-									entity.character.HumanoidRootPart.CFrame = entity.character.HumanoidRootPart.CFrame + newpos
-								end
+								entity.character.HumanoidRootPart.CFrame = entity.character.HumanoidRootPart.CFrame + newpos
 								entity.character.HumanoidRootPart.Velocity = vec3(velocheck and movevec.X or 0, entity.character.HumanoidRootPart.Velocity.Y, velocheck and movevec.Z or 0)
 							end
 						elseif speedmode["Value"] == "Normal" then 
@@ -6740,28 +6799,24 @@ runcode(function()
 								bodyvelo.MaxForce = vec3(9e9, 0, 9e9)
 							else
 								bodyvelo.MaxForce = ((entity.character.Humanoid:GetState() == Enum.HumanoidStateType.Climbing or entity.character.Humanoid.Sit or spidergoinup or antivoiding or GuiLibrary["ObjectsThatCanBeSaved"]["FlyOptionsButton"]["Api"]["Enabled"] or uninjectflag) and Vector3.zero or (longjump["Enabled"] and vec3(9e9, 0, 9e9) or vec3(9e9, 0, 9e9)))
-								bodyvelo.Velocity = longjump["Enabled"] and longjumpvelo or entity.character.Humanoid.MoveDirection * ((GuiLibrary["ObjectsThatCanBeSaved"]["FlyOptionsButton"]["Api"]["Enabled"] and 0 or ((longjumpticktimer >= tick() or slowdowntick >= tick()) and allowedvelo) or speedval["Value"]) * 1) * getSpeedMultiplier(true) * (slowdownspeed and slowdownspeedval or 1) * (bedwars["RavenTable"]["spawningRaven"] and 0 or 1) * ((combatcheck or combatchecktick >= tick()) and AnticheatBypassCombatCheck["Enabled"] and (not longjump["Enabled"]) and (not GuiLibrary["ObjectsThatCanBeSaved"]["FlyOptionsButton"]["Api"]["Enabled"]) and 0.84 or 1)
-								print(bodyvelo.Velocity.Magnitude)
+								bodyvelo.Velocity = longjump["Enabled"] and longjumpvelo or entity.character.Humanoid.MoveDirection * ((GuiLibrary["ObjectsThatCanBeSaved"]["FlyOptionsButton"]["Api"]["Enabled"] and 0 or ((longjumpticktimer >= tick()) and 20) or speedval["Value"]) * 1) * getSpeedMultiplier(true) * (slowdownspeed and slowdownspeedval or 1) * (bedwars["RavenTable"]["spawningRaven"] and 0 or 1) * ((combatcheck or combatchecktick >= tick()) and AnticheatBypassCombatCheck["Enabled"] and (not longjump["Enabled"]) and (not GuiLibrary["ObjectsThatCanBeSaved"]["FlyOptionsButton"]["Api"]["Enabled"]) and 0.84 or 1)
 							end
 						else
 							if jumptick <= tick() and entity.character.Humanoid.MoveDirection ~= Vector3.zero then 
 								jumptick = tick() + 0.66
-								local newspeed = (fly["Enabled"] and (flyboosting and 88 or flyspeed["Value"]) or speedval["Value"]) - 16
-								--[[for i = 1, 4 do 
+								local newspeed = fly["Enabled"] and (flyboosting and 88 or flyspeed["Value"]) or speedval["Value"]
+								for i = 1, 4 do 
 									task.wait(0.03)
 									velonum = ((i * ((newspeed - allowedvelo) / 4)) + allowedvelo)
-								end]]
-								numbertween(allowedvelo, newspeed, 0.12, function(val) velonum = val end)
-								task.wait(0.12)
-								numbertween(newspeed, 0, 0.3, function(val) velonum = val end)
-								--[[for i = 10, 1, -1 do 
+								end
+								for i = 10, 1, -1 do 
 									task.wait(0.03)
 									velonum = (newspeed * (i / 10))
-								end]]
+								end
 								boosttimes = boosttimes + 1
 							end
 							if velonum > allowedvelo and slowdowntick <= tick() then 
-								--velonum = math.max(velonum - (1000 * delta), allowedvelo)
+								velonum = math.max(velonum - (1000 * delta), allowedvelo)
 							else
 								velonum = allowedvelo * (boosttimes % 2 == 0 and 0.95 or 1)
 							end
@@ -6869,6 +6924,9 @@ end)
 
 GuiLibrary["RemoveObject"]("FlyOptionsButton")
 local flymissile
+
+
+
 runcode(function()
 	local OldNoFallFunction
 	local flymode = {["Value"] = "Normal"}
@@ -6877,6 +6935,7 @@ runcode(function()
 	local flypop = {["Enabled"] = true}
 	local flyautodamage = {["Enabled"] = true}
 	local flyac = {["Enabled"] = false}
+	local flyacboost = {["Enabled"] = false}
 	local flyacprogressbar = {["Enabled"] = false}
 	local flydamageanim = {["Enabled"] = false}
 	local flyspeedboost = {["Enabled"] = false}
@@ -6926,7 +6985,7 @@ runcode(function()
 				olddeflate = bedwars["BalloonController"]["deflateBalloon"]
 				bedwars["BalloonController"]["deflateBalloon"] = function() end
 				flypress = uis.InputBegan:connect(function(input1)
-					if flyupanddown["Enabled"] and bettergetfocus() == nil then
+					if flyupanddown["Enabled"] and uis:GetFocusedTextBox() == nil then
 						if input1.KeyCode == Enum.KeyCode.Space or input1.KeyCode == Enum.KeyCode.ButtonA then
 							flyup = true
 						end
@@ -7008,8 +7067,8 @@ runcode(function()
 							end
 							lastonground = onground
 							allowed = 1
-							if flyspeedboost["Enabled"] then
- 								realflyspeed = realflyspeed * getSpeedMultiplier(true) + (flymode["Value"] == "Normal" and 14 or 4)
+							if flyacboost["Enabled"] then
+ 								realflyspeed = realflyspeed * getSpeedMultiplier(true) + (flymode["Value"] == "Normal" and 14 or 8)
 							end
 						else
 							onground = true
@@ -7025,9 +7084,6 @@ runcode(function()
 							entity.character.HumanoidRootPart.CFrame = entity.character.HumanoidRootPart.CFrame + flypos2
 						end
 						flyvelo = flypos + vec3(0, mass + (flyup and flyverticalspeed["Value"] or 0) + (flydown and -flyverticalspeed["Value"] or 0), 0)
-						if slowdowntick <= tick() + 0.8 then 
-							slowdowntick = tick() + 0.75
-						end
 					end
 				end)
 			else
@@ -7151,6 +7207,9 @@ runcode(function()
 	flyac = fly.CreateToggle({
 		["Name"] = "Fly Anyway",
 		["Function"] = function(callback) 
+			if flyacboost["Object"] then 
+				flyacboost["Object"].Visible = callback
+			end
 			if flyspeedboost["Object"] then 
 				flyspeedboost["Object"].Visible = callback
 			end
@@ -7161,6 +7220,15 @@ runcode(function()
 		end,
 		["HoverText"] = "Enables fly without balloons for 1.4s"
 	})
+	flyacboost = fly.CreateToggle({
+		["Name"] = "Fly Boost",
+		["Function"] = function() end,
+		["HoverText"] = "boosts 1.4s fly",
+	})
+	flyacboost["Object"].BorderSizePixel = 0
+	flyacboost["Object"].BackgroundTransparency = 0
+	flyacboost["Object"].BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+	flyacboost["Object"].Visible = false
 	flyspeedboost = fly.CreateToggle({
 		["Name"] = "Boost Speed",
 		["Function"] = function() end,
@@ -7212,6 +7280,57 @@ runcode(function()
 	flyacprogressbar["Object"].BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 	flyacprogressbar["Object"].Visible = false
 end)
+
+runcode(function()
+local GravityFly = {["Enabled"] = false}
+	GravityFly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "GravityFly",
+		["Function"] = function(callback)
+			if callback then
+			    createwarning("GravityFly",  "You can lagback with this!", 6)
+					    game.Workspace.Gravity = 0
+				else
+				    game.Workspace.Gravity = 196
+			end
+		end
+	})
+end)
+
+runcode(function()
+	local part
+	local cam
+	local Flying
+	local ticks = 300
+	local speed = 1
+	local debuging = true
+	local partfly = {["Enabled"] = false}
+	partfly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "PartFly",
+		["HoverText"] = "Lets you fly using a part",
+		["Function"] = function(callback)
+			if callback then
+			    createwarning("PartFly",  "Patched For now", 6)
+			end
+			end
+	})
+	ticks = partfly.CreateSlider({
+		["Name"] = "Ticks",
+		["HoverText"] = "How long the fly lasts",
+		["Min"] = "75",
+		["Max"] = "750",
+		["Default"] = "175",
+		["Function"] = function(val) end
+	})
+speed = partfly.CreateSlider({
+        ["Name"] = "Speed",
+        ["HoverText"] = "How fast you go up",
+        ["Min"] = "2.5",
+        ["Max"] = "5",
+        ["Default"] = "2.5",
+        ["Function"] = function(val) end
+    })
+end)
+
 
 runcode(function()
 	local scaffoldtext = Instance.new("TextLabel")
@@ -7317,7 +7436,7 @@ runcode(function()
 								scaffoldstopmotionval = false
 							end
 							if wool or equipped["Type"] == "block" then
-								if ScaffoldTower["Enabled"] and uis:IsKeyDown(Enum.KeyCode.Space) and bettergetfocus() == nil then
+								if ScaffoldTower["Enabled"] and uis:IsKeyDown(Enum.KeyCode.Space) and uis:GetFocusedTextBox() == nil then
 									entity.character.HumanoidRootPart.Velocity = vec3(entity.character.HumanoidRootPart.Velocity.X, 50, entity.character.HumanoidRootPart.Velocity.Z)
 									if ScaffoldStopMotion["Enabled"] and scaffoldstopmotionval then
 										entity.character.HumanoidRootPart.CFrame = cfnew(vec3(scaffoldstopmotionpos.X, entity.character.HumanoidRootPart.CFrame.p.Y, scaffoldstopmotionpos.Z))
@@ -8552,6 +8671,70 @@ runcode(function()
 	})
 end)
 
+local AnticheatDisabler2 = {["Enabled"] = false}
+	AnticheatDisabler2 = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "AnticheatDisabler2",
+		["Function"] = function(callback)
+			if callback then 
+				spawn(function()
+				    createwarning("AnticheatDisabler2", "Bypassing Anticheat", 5)
+				    wait(5.3)
+				    createwarning("AnticheatDisabler2", "Failed to bypass anticheat", 5)
+				end)
+			end
+		end
+	})
+
+
+
+runcode(function()
+	local SpamInvite = {["Enabled"] = false}
+	SpamInvite = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "SpamInvite",
+		["Function"] = function(callback)
+			if callback then
+				task.spawn(function()
+					repeat
+						task.wait()
+						if (not SpamInvite["Enabled"]) then break end
+for i,v in next, game.Players:GetPlayers() do
+local args = {
+    [1] = {
+        ["player"] = v
+    }
+}
+
+game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].inviteToParty:FireServer(unpack(args))
+game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].leaveParty:FireServer()
+end
+						end
+					until (not SpamInvite["Enabled"])
+				end)
+			else
+
+			end
+		end,
+		["HoverText"] = "Spam Invites to everyone"
+	})
+
+
+
+local AnticheatDisabler = {["Enabled"] = false}
+	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "AnticheatDisabler",
+		["Function"] = function(callback)
+			if callback then
+				spawn(function()
+				    createwarning("AnticheatDisabler", "Anticheat Disabled", 7)
+				end)
+			end
+		end
+	})
+	
+	
+	
+	
+
 runcode(function()
 	local AnticheatBypassTransparent = {["Enabled"] = false}
 	local AnticheatBypassAlternate = {["Enabled"] = false}
@@ -8930,10 +9113,10 @@ runcode(function()
 							end
 						end
 					end)
-					GuiLibrary["ObjectsThatCanBeSaved"]["SpeedSpeedSlider"]["Api"]["SetValue"](28)
-					GuiLibrary["ObjectsThatCanBeSaved"]["SpeedModeDropdown"]["Api"]["SetValue"]("CFrame")
-					GuiLibrary["ObjectsThatCanBeSaved"]["FlySpeedSlider"]["Api"]["SetValue"](28)
-					GuiLibrary["ObjectsThatCanBeSaved"]["FlyModeDropdown"]["Api"]["SetValue"]("CFrame")
+					GuiLibrary["ObjectsThatCanBeSaved"]["SpeedSpeedSlider"]["Api"]["SetValue"](74)
+					GuiLibrary["ObjectsThatCanBeSaved"]["SpeedModeDropdown"]["Api"]["SetValue"]("Heatseeker")
+					GuiLibrary["ObjectsThatCanBeSaved"]["FlySpeedSlider"]["Api"]["SetValue"](74)
+					GuiLibrary["ObjectsThatCanBeSaved"]["FlyModeDropdown"]["Api"]["SetValue"]("Heatseeker")
 				end)
 			else
 				allowspeed = true
@@ -9129,31 +9312,6 @@ runcode(function()
 end)
 
 runcode(function()
-	local Multiaura = {["Enabled"] = false}
-    Multiaura = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-        ["Name"] = "MultiAura1",
-        ["Function"] = function(callback)
-            if callback then
-                task.spawn(function()
-					repeat
-						task.wait(0.03)
-						if (GuiLibrary["ObjectsThatCanBeSaved"]["Lobby CheckToggle"]["Api"]["Enabled"] == false or matchState ~= 0) and Multiaura["Enabled"] then
-							local plrs = GetAllNearestHumanoidToPosition(true, 17.999, 1, false)
-							for i,plr in pairs(plrs) do
-								local selfpos = entity.character.HumanoidRootPart.Position
-								local newpos = plr.RootPart.Position
-								bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
-							end
-						end
-					until Multiaura["Enabled"] == false
-				end)
-            end
-        end,
-        ["HoverText"] = "Attack players around you\nwithout aiming at them."
-    })
-end)
-
-runcode(function()
 	GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "WinterTheme",
 		["Function"] = function(callback)
@@ -9324,6 +9482,98 @@ runcode(function()
 		["Name"] = "Speed Potions",
 		["Function"] = function() end,
 		["Default"] = true
+	})
+end)
+
+runcode(function()
+	local DisguiseAll = {["Enabled"] = false}
+	local DisguiseAllId = {["Value"] = ""}
+	local disguiseadded
+	local desc
+	
+	local function disguisechar(char)
+		task.spawn(function()
+			if not char then return end
+			char:WaitForChild("Humanoid")
+			char:WaitForChild("Head")
+			if desc == nil then
+				desc = players:GetHumanoidDescriptionFromUserId(DisguiseAllId["Value"] == "" and 239702688 or tonumber(DisguiseAllId["Value"]))
+			end
+			desc.HeightScale = char.Humanoid.HumanoidDescription.HeightScale
+			char.Archivable = true
+			local disguiseclone = char:Clone()
+			disguiseclone.Name = "disguisechar"
+			disguiseclone.Parent = workspace
+			for i,v in pairs(disguiseclone:GetChildren()) do 
+				if v:IsA("Accessory") or v:IsA("ShirtGraphic") or v:IsA("Shirt") or v:IsA("Pants") then  
+					v:Destroy()
+				end
+			end
+			disguiseclone.Humanoid:ApplyDescriptionClientServer(desc)
+			for i,v in pairs(char:GetChildren()) do 
+				if (v:IsA("Accessory") and v:GetAttribute("InvItem") == nil and v:GetAttribute("ArmorSlot") == nil) or v:IsA("ShirtGraphic") or v:IsA("Shirt") or v:IsA("Pants") or v:IsA("BodyColors") then 
+					v.Parent = game
+				end
+			end
+			char.ChildAdded:connect(function(v)
+				if ((v:IsA("Accessory") and v:GetAttribute("InvItem") == nil and v:GetAttribute("ArmorSlot") == nil) or v:IsA("ShirtGraphic") or v:IsA("Shirt") or v:IsA("Pants") or v:IsA("BodyColors")) and v:GetAttribute("Disguise") == nil then 
+					repeat task.wait() v.Parent = game until v.Parent == game
+				end
+			end)
+			pcall(function()
+				for i,v in pairs(disguiseclone.Animate:GetChildren()) do 
+					v:SetAttribute("Disguise", true)
+					local real = char.Animate:FindFirstChild(v.Name)
+					if v:IsA("StringValue") and real then 
+						real.Parent = game
+						v.Parent = char.Animate
+					end
+				end
+			end)
+			for i,v in pairs(disguiseclone:GetChildren()) do 
+				v:SetAttribute("Disguise", true)
+				if v:IsA("Accessory") then  
+					for i2,v2 in pairs(v:GetDescendants()) do 
+						if v2:IsA("Weld") and v2.Part1 then 
+							v2.Part1 = char[v2.Part1.Name]
+						end
+					end
+					v.Parent = char
+				elseif v:IsA("ShirtGraphic") or v:IsA("Shirt") or v:IsA("Pants") or v:IsA("BodyColors") then  
+					v.Parent = char
+				elseif v.Name == "Head" then 
+					char.Head.MeshId = v.MeshId
+				end
+			end
+			char.Humanoid.HumanoidDescription:SetEmotes(desc:GetEmotes())
+			char.Humanoid.HumanoidDescription:SetEquippedEmotes(desc:GetEquippedEmotes())
+			disguiseclone:Destroy()
+		end)
+	end
+
+	DisguiseAll = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "DisguiseAll",
+		["Function"] = function(callback)
+			if callback then 
+				disguiseadded = entity.entityAddedEvent:connect(function(ent)
+					disguisechar(ent.Character)
+				end)
+				for i,ent in pairs(entity.entityList) do 
+					disguisechar(ent.Character)
+				end
+			else
+				if disguiseadded then 
+					disguiseadded:Disconnect()
+				end
+			end
+		end
+	})
+	DisguiseAllId = DisguiseAll.CreateTextBox({
+		["Name"] = "Disguise",
+		["TempText"] = "Disguise User Id",
+		["FocusLost"] = function(enter) 
+			task.spawn(function() desc = players:GetHumanoidDescriptionFromUserId(DisguiseAllId["Value"] == "" and 239702688 or tonumber(DisguiseAllId["Value"])) end)
+		end
 	})
 end)
 
@@ -9550,7 +9800,11 @@ runcode(function()
 	})
 end)
 
+
+
 GuiLibrary["RemoveObject"]("SafeWalkOptionsButton")
+
+
 runcode(function()
 	local controlmodule = require(lplr.PlayerScripts.PlayerModule).controls
 	local oldmove
@@ -9829,8 +10083,6 @@ runcode(function()
 	local teleported = {}
 	local teleported2 = {}
 	local teleportconnections = {}
-	local pinglist = {}
-	local fpslist = {}
 	local matchstatechanged = 0
 	local mapname = "to4_Blossom"
 
@@ -9851,26 +10103,6 @@ runcode(function()
 				end
 			end
 		end)
-
-		local function didpingspike()
-			local currentpingcheck = pinglist[1] or math.floor(tonumber(game:GetService("Stats"):FindFirstChild("PerformanceStats").Ping:GetValue()))
-			for i,v in pairs(fpslist) do 
-				print("anticheatbypass fps ["..i.."]: "..v)
-				if v < 40 then 
-					return v.." fps"
-				end
-			end
-			for i,v in pairs(pinglist) do 
-				print("anticheatbypass ping ["..i.."]: "..v)
-				if v ~= currentpingcheck and math.abs(v - currentpingcheck) >= 100 then 
-					return currentpingcheck.." => "..v.." ping"
-				else
-					currentpingcheck = v
-				end
-			end
-			return nil
-		end
-
 		local function notlasso()
 			for i,v in pairs(collectionservice:GetTagged("LassoHooked")) do 
 				if v == lplr.Character then 
@@ -9880,16 +10112,6 @@ runcode(function()
 			return true
 		end
 		repeat
-			local ping = math.floor(tonumber(game:GetService("Stats"):FindFirstChild("PerformanceStats").Ping:GetValue()))
-			local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait())
-			if #pinglist >= 10 then 
-				table.remove(pinglist, 1)
-			end
-			if #fpslist >= 10 then 
-				table.remove(fpslist, 1)
-			end
-			table.insert(pinglist, ping)
-			table.insert(fpslist, fps)
 			wait(1)
 			if matchState ~= matchstatechanged then 
 				if matchState == 1 then 
@@ -9904,12 +10126,7 @@ runcode(function()
 			if entity.isAlive and (not AnticheatBypass["Enabled"]) and networkownerfunc then 
 				local newnetworkowner = networkownerfunc(entity.character.HumanoidRootPart)
 				if oldnetworkowner ~= nil and oldnetworkowner ~= newnetworkowner and newnetworkowner == false and notlasso() then 
-					local falseflag = didpingspike()
-					if falseflag then 
-						createwarning("AnticheatBypass", "Lagspike Detected : "..falseflag, 10)
-					else
-						lagbacks = lagbacks + 1
-					end
+					lagbacks = lagbacks + 1
 				end
 				oldnetworkowner = newnetworkowner
 			else
@@ -9939,7 +10156,7 @@ runcode(function()
 			local splitted = origtpstring:split("/")
 			label.Text = "Session Info\nTime Played : "..os.date("!%X",math.floor(tick() - splitted[1])).."\nKills : "..(splitted[2] + kills).."\nBeds : "..(splitted[3] + beds).."\nWins : "..(splitted[4] + (victorysaid and 1 or 0)).."\nGames : "..splitted[5].."\nLagbacks : "..(splitted[6] + lagbacks).."\nUniversal Lagbacks : "..(splitted[7] + otherlagbacks).."\nReported : "..(splitted[8] + reported).."\nMap : "..mapname
 			local textsize = textservice:GetTextSize(label.Text, label.TextSize, label.Font, Vector2.new(9e9, 9e9))
-			overlayframe.Size = UDim2.new(0, math.max(textsize.X + 19, 200), 0, (textsize.Y * 1.2) + 10)
+			overlayframe.Size = UDim2.new(0, math.max(textsize.X, 200), 0, (textsize.Y * 1.2) + 10)
 			tpstring = splitted[1].."/"..(splitted[2] + kills).."/"..(splitted[3] + beds).."/"..(splitted[4] + (victorysaid and 1 or 0)).."/"..(splitted[5] + 1).."/"..(splitted[6] + lagbacks).."/"..(splitted[7] + otherlagbacks).."/"..(splitted[8] + reported)
 		until uninjectflag
 	end)
@@ -10419,7 +10636,6 @@ runcode(function()
 	})
 end)
 
-
 runcode(function()
 	local BowExploit = {["Enabled"] = false}
 	local BowExploitTarget = {["Value"] = "Mouse"}
@@ -10647,6 +10863,7 @@ runcode(function()
 		["Default"] = 1000
 	})
 end)
+
 
 local function isblatant()
 	return GuiLibrary["ObjectsThatCanBeSaved"]["SpeedOptionsButton"]["Api"]["Enabled"] or GuiLibrary["ObjectsThatCanBeSaved"]["SpeedOptionsButton"]["Api"]["Keybind"] ~= "" or GuiLibrary["ObjectsThatCanBeSaved"]["AnticheatBypassOptionsButton"]["Api"]["Enabled"] or GuiLibrary["ObjectsThatCanBeSaved"]["LongJumpOptionsButton"]["Api"]["Enabled"] or GuiLibrary["ObjectsThatCanBeSaved"]["LongJumpOptionsButton"]["Api"]["Keybind"] ~= ""
@@ -10908,7 +11125,7 @@ if shared.nobolineupdate then
 			realgui.Parent = gethui()
 		end
 		fakeuiconnection = uis.InputBegan:connect(function(input1)
-			if bettergetfocus() == nil then
+			if uis:GetFocusedTextBox() == nil then
 				if input1.KeyCode == Enum.KeyCode[GuiLibrary["GUIKeybind"]] and GuiLibrary["KeybindCaptured"] == false then
 					realgui.Enabled = not realgui.Enabled
 					uis.OverrideMouseIconBehavior = (realgui.Enabled and Enum.OverrideMouseIconBehavior.ForceShow or game:GetService("VRService").VREnabled and Enum.OverrideMouseIconBehavior.ForceHide or Enum.OverrideMouseIconBehavior.None)
