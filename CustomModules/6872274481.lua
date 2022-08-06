@@ -9253,7 +9253,6 @@ runcode(function()
 		["Function"] = function() end,
 		["Default"] = true
 	})
-	if shared.VapeDeveloper then 
 		AnticheatBypassTPSpeed = AnticheatBypass.CreateSlider({
 			["Name"] = "TPSpeed",
 			["Function"] = function(val) 
@@ -9274,7 +9273,6 @@ runcode(function()
 			["Max"] = 100,
 			["Default"] = AnticheatBypassNumbers.TPLerp * 100,
 		})
-	end
 end)
 
 runcode(function()
