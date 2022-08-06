@@ -10736,8 +10736,9 @@ end)
 		local bestsword, ammo, bestswordnum  = nil, nil, 0
 		for i5, v5 in pairs(bedwars["getInventory"](lplr)["items"]) do
 			if v5["itemType"]:find("bow") then
-				local tab = bedwars["ItemTable"][v5["itemType"]].projectileSource.ammoItemTypes
-				local tab2 = tab[#tab]
+			--]]
+				--local tab = bedwars["ItemTable"][v5["itemType"]].projectileSource.ammoItemTypes
+				--[[local tab2 = tab[#tab]
 				if bedwars["ProjectileMeta"][tab2].combat.damage > bestswordnum then
 					bestswordnum = bedwars["ProjectileMeta"][tab2].combat.damage
 					bestsword = v5["tool"]
