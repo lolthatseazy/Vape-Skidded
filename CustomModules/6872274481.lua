@@ -9129,15 +9129,15 @@ runcode(function()
 end)
 
 runcode(function()
-	local Hello = {["Enabled"] = false}
-    Hello = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-        ["Name"] = "Hello",
+	local Multiaura = {["Enabled"] = false}
+    Multiaura = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+        ["Name"] = "MultiAura",
         ["Function"] = function(callback)
             if callback then
                 task.spawn(function()
 					repeat
 						task.wait(0.03)
-						if (GuiLibrary["ObjectsThatCanBeSaved"]["Lobby CheckToggle"]["Api"]["Enabled"] == false or matchState ~= 0) and Hello["Enabled"] then
+						if (GuiLibrary["ObjectsThatCanBeSaved"]["Lobby CheckToggle"]["Api"]["Enabled"] == false or matchState ~= 0) and Multiaura["Enabled"] then
 							local plrs = GetAllNearestHumanoidToPosition(true, 17.999, 1, false)
 							for i,plr in pairs(plrs) do
 								local selfpos = entity.character.HumanoidRootPart.Position
@@ -9145,7 +9145,7 @@ runcode(function()
 								bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
 							end
 						end
-					until Hello["Enabled"] == false
+					until Multiaura["Enabled"] == false
 				end)
             end
         end,
