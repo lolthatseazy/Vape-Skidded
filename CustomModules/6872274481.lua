@@ -10599,7 +10599,7 @@ runcode(function()
 	})
 end)
 
-runcode(function()
+--[[runcode(function()
 	local BowExploit = {["Enabled"] = false}
 	local BowExploitTarget = {["Value"] = "Mouse"}
 	local BowExploitCamera = {["Enabled"] = false}
@@ -10826,7 +10826,7 @@ runcode(function()
 		["Default"] = 1000
 	})
 end)
-
+--]]
 
 local function isblatant()
 	return GuiLibrary["ObjectsThatCanBeSaved"]["SpeedOptionsButton"]["Api"]["Enabled"] or GuiLibrary["ObjectsThatCanBeSaved"]["SpeedOptionsButton"]["Api"]["Keybind"] ~= "" or GuiLibrary["ObjectsThatCanBeSaved"]["AnticheatBypassOptionsButton"]["Api"]["Enabled"] or GuiLibrary["ObjectsThatCanBeSaved"]["LongJumpOptionsButton"]["Api"]["Enabled"] or GuiLibrary["ObjectsThatCanBeSaved"]["LongJumpOptionsButton"]["Api"]["Keybind"] ~= ""
