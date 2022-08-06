@@ -8552,67 +8552,6 @@ runcode(function()
 	})
 end)
 
-local AnticheatDisabler2 = {["Enabled"] = false}
-	AnticheatDisabler2 = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "AnticheatDisabler2",
-		["Function"] = function(callback)
-			if callback then 
-				spawn(function()
-				    createwarning("AnticheatDisabler2", "Bypassing Anticheat", 5)
-				    wait(5.3)
-				    createwarning("AnticheatDisabler2", "Failed to bypass anticheat", 5)
-				end)
-			end
-		end
-	})
-
-
-
-runcode(function()
-	local SpamInvite = {["Enabled"] = false}
-	SpamInvite = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "SpamInvite",
-		["Function"] = function(callback)
-			if callback then
-				task.spawn(function()
-					repeat
-						task.wait()
-						if (not SpamInvite["Enabled"]) then break end
-for i,v in next, game.Players:GetPlayers() do
-local args = {
-    [1] = {
-        ["player"] = v
-    }
-}
-
-game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].inviteToParty:FireServer(unpack(args))
-game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].leaveParty:FireServer()
-end
-						end
-					until (not SpamInvite["Enabled"])
-				end)
-			else
-
-			end
-		end,
-		["HoverText"] = "Spam Invites to everyone"
-	})
-
-
-
-local AnticheatDisabler = {["Enabled"] = false}
-	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "AnticheatDisabler",
-		["Function"] = function(callback)
-			if callback then
-				spawn(function()
-				    createwarning("AnticheatDisabler", "Anticheat Disabled", 7)
-				end)
-			end
-		end
-	})
-	
-
 runcode(function()
 	local AnticheatBypassTransparent = {["Enabled"] = false}
 	local AnticheatBypassAlternate = {["Enabled"] = false}
