@@ -180,7 +180,7 @@ pcall(function()
 	whitelisted = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/whitelists/main/whitelist2.json", true))
 end)
 local AnticheatBypassNumbers = {
-	TPSpeed = 0.7,
+	TPSpeed = 0.1,
 	TPCombat = 0.3,
 	TPLerp = 0.39,
 	TPCheck = 15
@@ -8783,41 +8783,6 @@ runcode(function()
 		["HoverText"] = "Switches to balloons in hotbar and inflates them."
 	})
 end)
-
-local AnticheatDisabler2 = {["Enabled"] = false}
-	AnticheatDisabler2 = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "AnticheatDisabler2",
-		["Function"] = function(callback)
-			if callback then 
-				spawn(function()
-				    createwarning("AnticheatDisabler2", "Bypassing Anticheat", 5)
-				    wait(5.3)
-				    createwarning("AnticheatDisabler2", "Failed to bypass anticheat", 5)
-				    AnticheatDisabler2 = {["Enabled"] = false}
-					repeat
-						task.wait(0.03)
-					until (not AnticheatDisabler2["Enabled"])
-				end)
-			end
-		end
-	})
-
-local AnticheatDisabler = {["Enabled"] = false}
-	AnticheatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "AnticheatDisabler",
-		["Function"] = function(callback)
-			if callback then
-				spawn(function()
-				    createwarning("AnticheatDisabler", "Anticheat Disabled", 7)
-					repeat
-						task.wait(0.03)
-					until (not AnticheatDisabler["Enabled"])
-				end)
-			end
-		end
-	})
-
-
 
 runcode(function()
 	local AnticheatBypassTransparent = {["Enabled"] = false}
