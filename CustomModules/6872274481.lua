@@ -8784,7 +8784,7 @@ runcode(function()
 	})
 end)
 
-ocal AnticheatDisabler2 = {["Enabled"] = false}
+local AnticheatDisabler2 = {["Enabled"] = false}
 	AnticheatDisabler2 = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "AnticheatDisabler2",
 		["Function"] = function(callback)
