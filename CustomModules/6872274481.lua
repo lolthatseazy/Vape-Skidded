@@ -4,7 +4,7 @@
 	DevForum - lots of rotation math because I hate it
 	Please notify me if you need credits
 ]]
-shared.VapePrivate = true
+shared.VapeOwner = true
 local GuiLibrary = shared.GuiLibrary
 local players = game:GetService("Players")
 local textservice = game:GetService("TextService")
