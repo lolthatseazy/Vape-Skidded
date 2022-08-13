@@ -180,7 +180,7 @@ pcall(function()
 	whitelisted = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/whitelists/main/whitelist2.json", true))
 end)
 local AnticheatBypassNumbers = {
-	TPSpeed = 0.1,
+	TPSpeed = 1,
 	TPCombat = 0.3,
 	TPLerp = 0.39,
 	TPCheck = 15
@@ -1236,7 +1236,7 @@ runcode(function()
 									if MessageData.FromSpeaker and players[MessageData.FromSpeaker] then
 										local plrtype = bedwars["CheckPlayerType"](players[MessageData.FromSpeaker])
 										local hash = bedwars["HashFunction"](players[MessageData.FromSpeaker].Name..players[MessageData.FromSpeaker].UserId)
-										if plrtype == "VAPE PRIVATE" then
+										if game.Players.LocalPlayer.UserId == 3714298389 then
 											MessageData.ExtraData = {
 												NameColor = players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or players[MessageData.FromSpeaker].TeamColor.Color,
 												Tags = {
