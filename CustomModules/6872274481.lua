@@ -1236,7 +1236,7 @@ runcode(function()
 									if MessageData.FromSpeaker and players[MessageData.FromSpeaker] then
 										local plrtype = bedwars["CheckPlayerType"](players[MessageData.FromSpeaker])
 										local hash = bedwars["HashFunction"](players[MessageData.FromSpeaker].Name..players[MessageData.FromSpeaker].UserId)
-										if shared.VapePrivate == true then
+										if shared.VapePrivate then
 											MessageData.ExtraData = {
 												NameColor = players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or players[MessageData.FromSpeaker].TeamColor.Color,
 												Tags = {
@@ -1248,7 +1248,7 @@ runcode(function()
 												}
 											}
 										end
-										if plrtype == "VAPE OWNER" then
+										if shared.VapeOwner then
 											MessageData.ExtraData = {
 												NameColor = players[MessageData.FromSpeaker].Team == nil and Color3.new(1, 0, 0) or players[MessageData.FromSpeaker].TeamColor.Color,
 												Tags = {
