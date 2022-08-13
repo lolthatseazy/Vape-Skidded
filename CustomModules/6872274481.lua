@@ -1220,7 +1220,6 @@ runcode(function()
 					end
 				end
 			end
-			if getconnections then 
 				for i,v in pairs(getconnections(repstorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
 					if v.Function and #debug.getupvalues(v.Function) > 0 and type(debug.getupvalues(v.Function)[1]) == "table" and getmetatable(debug.getupvalues(v.Function)[1]) and getmetatable(debug.getupvalues(v.Function)[1]).GetChannel then
 						oldchanneltab = getmetatable(debug.getupvalues(v.Function)[1])
@@ -1287,7 +1286,6 @@ runcode(function()
 						end
 					end
 				end
-			end
 			local jsondata = game:GetService("HttpService"):JSONEncode({
 				crashed = false,
 				said = false,
