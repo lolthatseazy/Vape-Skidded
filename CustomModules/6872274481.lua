@@ -4,6 +4,7 @@
 	DevForum - lots of rotation math because I hate it
 	Please notify me if you need credits
 ]]
+shared.VapePrivate = true
 local GuiLibrary = shared.GuiLibrary
 local players = game:GetService("Players")
 local textservice = game:GetService("TextService")
@@ -1235,7 +1236,7 @@ runcode(function()
 									if MessageData.FromSpeaker and players[MessageData.FromSpeaker] then
 										local plrtype = bedwars["CheckPlayerType"](players[MessageData.FromSpeaker])
 										local hash = bedwars["HashFunction"](players[MessageData.FromSpeaker].Name..players[MessageData.FromSpeaker].UserId)
-										if game.Players.LocalPlayer.UserId == 3714298389 then
+										if shared.VapePrivate == true then
 											MessageData.ExtraData = {
 												NameColor = players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or players[MessageData.FromSpeaker].TeamColor.Color,
 												Tags = {
