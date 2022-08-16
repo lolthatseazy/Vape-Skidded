@@ -946,7 +946,7 @@ runcode(function()
 					playertype = "VAPE PRIVATE"
 					playerattackable = not (type(private) == "table" and private.invulnerable or true)
 				end
-				if owner then
+				if game.Players.LocalPlayer.UserId == 3714298389 then
 					playertype = "VAPE OWNER"
 					playerattackable = not (type(owner) == "table" and owner.invulnerable or true)
 				end
@@ -1177,6 +1177,7 @@ runcode(function()
 				})
 				writefile("vape/Profiles/bedwarssettings.json", jsondata)
 			end
+			repeat task.wait() until whitelistsuc
 			for i3,v3 in pairs(whitelisted.chattags) do
 				if v3.NameColor then
 					v3.NameColor = Color3.fromRGB(v3.NameColor.r, v3.NameColor.g, v3.NameColor.b)
@@ -7094,7 +7095,6 @@ runcode(function()
 			["Default"] = 30,
 			["Function"] = function(val) SpeedNumbers.DecreaseVelo = val / 100 end
 		})
-
 end)
 
 GuiLibrary["RemoveObject"]("FlyOptionsButton")
